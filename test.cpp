@@ -5,11 +5,10 @@
 #include <fstream>
 using namespace std;
 
-
 //=================================================================//
 //                        Public class                             //
 //=================================================================//
-class home{
+class hotel{
     int room_no;
     char name[30];
     char address[50];
@@ -26,14 +25,14 @@ class home{
     int check(int);			//to check room status
     void modify(int);		//to modify the record
     void delete_rec(int);		//to delete the record
-    void bill(int);                 //for the bill of a record
+    void bill(int);             //for the bill of a record                
 
 
 };
 //=================================================================//
 //                          Main menu                              //
 //=================================================================//
-void home::main_menu(){
+void hotel::main_menu(){
     system("cls");
     int choice;
     while(choice!=5){
@@ -47,7 +46,8 @@ void home::main_menu(){
         cout<<"2. customer Records\n";
         cout<<"3. Room Alloted\n";
         cout<<"4. Edit Records\n";
-        cout<<"5. Exit\n"<<endl;
+        cout<<"5. Exit\n\n";
+        cout<<"+ Ctrl + C to exit +\n"<<endl;
 
         //display of mainmenu
 
@@ -68,7 +68,8 @@ void home::main_menu(){
         case 4:edit();
             break;
 
-        case 5:break;
+        case 5:system("exit");
+        break;
 
         default:
             cout<<"\n\nWrong choice !"<<endl;
@@ -82,7 +83,8 @@ void home::main_menu(){
 //=================================================================//
 //                       1.Book a room                             //
 //=================================================================//
-void home::add(){
+void hotel::add(){
+
 
     system("cls");
     int choice;
@@ -100,6 +102,7 @@ void home::add(){
         break;
     case 2:add_room();
         break;
+
     case 3:
         break;
     
@@ -112,20 +115,19 @@ void home::add(){
 //=================================================================//
 //                       2.Customer Records                        //
 //=================================================================//
-void home::display(){
+void hotel::display(){
 
     system("cls");
 
 ifstream fin("Record.dat",ios::in);
 int r,flag;
 
-cout<<"\n Enter room no. for a particular customer`s details :- "<<endl;
-cin>>r;
+cout<<"\n Enter room number for a particular customer`s details :- ";cin>>r;
 
 while(!fin.eof())
 {
 
-fin.read((char*)this,sizeof(home));
+fin.read((char*)this,sizeof(hotel));
 if(room_no==r)
 {
 
@@ -155,7 +157,7 @@ system("cls");
 //=================================================================//
 //                       3.Room Alloted                            //
 //=================================================================//
-void home::rooms(){
+void hotel::rooms(){
       system("cls");
 
 ifstream fin("Record.dat",ios::in);
@@ -166,7 +168,7 @@ cout<<"\n\n Room No.\tName\t\tAddress\t\tPhone No.\n";
 while(!fin.eof())
 {
 
-fin.read((char*)this,sizeof(home));
+fin.read((char*)this,sizeof(hotel));
 cout<<"\n\n "<<room_no<<"\t\t"<<name;
 cout<<"\t\t"<<address<<"\t\t"<<phone;
 
@@ -179,13 +181,13 @@ fin.close();
 //=================================================================//
 //                       4.Edit Records                            //
 //=================================================================//
-void home::edit(){
-    int cho;
-    while (cho!=3)
+void hotel::edit(){
+    int choice,r;
+    while (choice!=3)
     {
          system("cls");
 
-int choice,r;
+
 cout<<"\n EDIT MENU";
 cout<<"\n ---------";
 cout<<"\n 1. Modify Customer Record";
@@ -214,15 +216,15 @@ cin>>r;
 delete_rec(r);
 break;
 
-case 3: main_menu();
+case 3:
 break;
 
 default: cout<<"\n Wrong Choice.....!!";
 
 }
-cout<<"\n Press any key to continue....!!!";
+// cout<<"\n Press any key to continue....!!!";
 
-getch();
+// getch();
 
 }
     
@@ -231,7 +233,7 @@ getch();
 //=================================================================//
 //                   1.Book a room >> 2.Select a room              //
 //=================================================================//
-void home::add_room(){
+void hotel::add_room(){
         system("cls");
         int r,flag;
         ofstream fout("Record.dat",ios::app);
@@ -261,7 +263,7 @@ void home::add_room(){
             cout<<" Phone No: "; cin>>phone;
             //cin.getline(phone , sizeof(phone));
             
-            fout.write((char*)this,sizeof(home));
+            fout.write((char*)this,sizeof(hotel));
             cout<<"\n The room number "<<r<<" is alloted for you...!"<<endl;
             
         }
@@ -274,7 +276,7 @@ void home::add_room(){
 //=================================================================//
 //                   1.Book a room >> 1.About                      //
 //=================================================================//
-void home::about(){
+void hotel::about(){
     system("cls");
     int choice;
 
@@ -304,7 +306,7 @@ void home::about(){
 //=================================================================//
 //                          Check function                         //
 //=================================================================//
-int home::check(int r)
+int hotel::check(int r)
 
 {
 
@@ -315,7 +317,7 @@ ifstream fin("Record.dat",ios::in);
 while(!fin.eof())
 {
 
-fin.read((char*)this,sizeof(home));
+fin.read((char*)this,sizeof(hotel));
 if(room_no==r)
 {
 
@@ -333,7 +335,7 @@ return(flag);
 //=================================================================//
 //              4.Edit Records >> 1.Modify Customer Record         //
 //=================================================================//
-void home::modify(int r)
+void hotel::modify(int r)
 
 {
 
@@ -345,7 +347,7 @@ while(!file.eof())
 {
 
 pos=file.tellg();
-file.read((char*)this,sizeof(home));
+file.read((char*)this,sizeof(hotel));
 
 if(room_no==r)
 {
@@ -359,7 +361,7 @@ cin>>address;
 cout<<" Phone no: ";
 cin>>phone;
 file.seekg(pos);
-file.write((char*)this,sizeof(home));
+file.write((char*)this,sizeof(hotel));
 cout<<"\n Record is modified....!!";
 flag=1;
 break;
@@ -376,7 +378,7 @@ file.close();
 //=================================================================//
 //              4.Edit Records >> 2.Delete Customer Record         //
 //=================================================================//
-void home::delete_rec(int r)
+void hotel::delete_rec(int r)
 {
 
 int flag=0;
@@ -387,7 +389,7 @@ ofstream fout("temp.dat",ios::out);
 while(!fin.eof())
 {
 
-fin.read((char*)this,sizeof(home));
+fin.read((char*)this,sizeof(hotel));
 if(room_no==r)
 
 {
@@ -399,13 +401,13 @@ cout<<"\n\n Do you want to delete this record(y/n): ";
 cin>>ch;
 
 if(ch=='n')
-fout.write((char*)this,sizeof(home));
+fout.write((char*)this,sizeof(hotel));
 flag=1;
 
 }
 
 else
-fout.write((char*)this,sizeof(home));
+fout.write((char*)this,sizeof(hotel));
 
 }
 
@@ -428,7 +430,7 @@ rename("temp.dat","Record.dat");
 //                           First Page                            //
 //=================================================================//
 int main(){
-    home h;
+    hotel h;
 
   system("cls");
 
@@ -444,10 +446,3 @@ getch();
 h.main_menu();
 return 0;
 }
-
-
-
-
-
-
-
