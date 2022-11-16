@@ -1,30 +1,32 @@
+//=================================================================//
+//                           Libraries                             //
+//=================================================================//
 #include <iostream>
 #include <conio.h>
 #include <stdio.h>
 #include <fstream>
 using namespace std;
-
 //=================================================================//
-//                        Public class                             //
+//                            class                                //
 //=================================================================//
 class hotel{
-    int room_no;
-    char name[30];
-    char address[50];
-    char phone[10];
+    int room_no;            //room number
+    char name[30];          //name of the customer
+    char address[50];       //address of the customer
+    char phone[10];         //phone of the customer
 
     public:
-    void add_room();       //room number input
+    void add_room();        //room number input
     void about();           //display all functions and room types
     void main_menu();		//to dispay the main menu
-    void add();			//to book a room
+    void add();			    //to book a room
     void display(); 		//to display the customer record
     void rooms();			//to display alloted rooms
     void edit();			//to edit the customer record
     int check(int);			//to check room status
     void modify(int);		//to modify the record
-    void delete_rec(int);		//to delete the record
-    void bill(int);             //for the bill of a record                
+    void delete_rec(int);	//to delete the record
+    void bill(int);         //for the bill of a record                
 
 
 };
@@ -39,9 +41,9 @@ void hotel::main_menu(){
         
         //display of mainmenu
         
-        cout<<"******************\n";
-        cout<<"*     AR HOTEL   *\n";
-        cout<<"******************\n"<<endl<<endl;
+        
+        cout<<"*    Main Menu   *\n";
+        cout<<"------------------\n"<<endl<<endl;
         cout<<"1. Book a room\n";
         cout<<"2. customer Records\n";
         cout<<"3. Room Alloted\n";
@@ -111,13 +113,13 @@ void hotel::add(){
     }
 }
 //=================================================================//
-//                       2.Customer Records                        //
+//                     2.Customer Records                          //
 //=================================================================//
 void hotel::display(){
 
     system("cls");
 
-ifstream fin("record.txt",ios::in);
+ifstream fin("record.txt");
 int r,flag;
 
 cout<<"\n Enter room number for a particular customer`s details :- ";cin>>r;
@@ -158,7 +160,7 @@ system("cls");
 void hotel::rooms(){
       system("cls");
 
-ifstream fin("record.txt",ios::in);
+ifstream fin("record.txt");
 cout<<"\n\t\t\t    List Of Rooms Allotted";
 cout<<"\n\t\t\t    ----------------------";
 cout<<"\n\n Room No.\tName\t\tAddress\t\tPhone No.\n";
@@ -167,8 +169,7 @@ while(!fin.eof())
 {
 
 fin.read((char*)this,sizeof(hotel));
-// cout<<"\n\n "<<room_no<<"\t\t"<<name;
-// cout<<"\t\t"<<address<<"\t\t"<<phone;
+
 cout<<"\n\n "<<room_no<<"\t\t"<<name<<"\t\t"<<address<<"\t\t"<<phone;
 
 }
@@ -235,13 +236,17 @@ getch();
 void hotel::add_room(){
         system("cls");
         int r,flag;
-        ofstream fout("record.txt",ios::app);
+        ofstream fout("record.txt");
         
         cout<<"\n Total no. of Rooms - 50\n";
-        cout<<"\n ORDINARY Rooms from : [ 01 - 30 ]\n";
+        cout<<"\n ORDINARY Rooms from : [ 1 - 30 ]\n";
         cout<<"\n LUXUARY Rooms from  : [ 31 - 45 ]\n";
         cout<<"\n ROYAL Rooms from    : [ 46 - 50 ]\n"<<endl;
-        cout<<"\n Enter The Room no. you want to stay in :- ";cin>>r;
+        
+        cout<<"\n Enter The Room no. you want to stay in :- ";
+        cin>>r;
+
+    if(r<=50){
 
         flag=check(r);
 
@@ -266,6 +271,13 @@ void hotel::add_room(){
             cout<<"\n The room number "<<r<<" is alloted for you...!"<<endl;
             
         }
+    }
+    else{
+        system("cls");
+        cout<<"\n\n";
+        cout<<"\t\tWe don't have more than 50 rooms, so please change the number !"<<endl;
+    }
+
         cout<<"\n Press any key to continue.....!!";
         getch();
         fout.close();
@@ -276,8 +288,8 @@ void hotel::add_room(){
 //                   1.Book a room >> 1.About                      //
 //=================================================================//
 void hotel::about(){
-    
     int choice;
+    system("cls");
 
     while(choice!=1){
     system("cls");
@@ -289,6 +301,7 @@ void hotel::about(){
     cout<<"ROYAL(V.I.P) [Studio Quality room] :\n\na) Special-size bed \nb) Smart TV \nc) Large size Heated Jacuzzi \nd) 5g- Wifi \ne) Spacious Recliner Sofa \nf) Working desk with precious views.\ng) Fully furnished apartment\n\n";
 
     cout<<"Press (1) for Back : ";cin>>choice;
+    system("cls");
 
     switch (choice)
     {
@@ -311,7 +324,7 @@ int hotel::check(int r)
 
 int flag=0;
 
-ifstream fin("record.txt",ios::in);
+ifstream fin("record.txt");
 
 while(!fin.eof())
 {
@@ -340,7 +353,7 @@ void hotel::modify(int r)
 
 long pos,flag=0;
 
-fstream file("record.txt",ios::in|ios::out|ios::binary);
+fstream file("record.txt");
 
 while(!file.eof())
 {
@@ -382,8 +395,8 @@ void hotel::delete_rec(int r)
 
 int flag=0;
 char ch;
-ifstream fin("record.txt",ios::in);
-ofstream fout("temp.dat",ios::out);
+ifstream fin("record.txt");
+ofstream fout("temp.dat"); //,ios::out
 
 while(!fin.eof())
 {
@@ -445,5 +458,6 @@ getch();
 h.main_menu();
 return 0;
 }
-
-//Code End
+//=================================================================//
+//                       End of the project                        //
+//=================================================================//
