@@ -283,9 +283,13 @@ void hotel::about(){
     system("cls");
     cout<<"      Features    \n";
     cout<<"-------------------\n\n";
-    cout<<"ORDINARY : [Single & simple room]: \na) Singel bed \nb) TV \nc) A private bathroom and a shower \nd) Working desk.\n\n";
-    cout<<"LUXUARY : [Spacious room]: \na) King-size bed \nb) Smart TV \nc) Jacuzzi \nd) Wifi \ne) Single Recliner Sofa \nf) Working desk.\n\n";
-    cout<<"ROYAL(V.I.P) : [Studio Quality room as fully furnished apartment]: \na)Special-size bed \nb)Smart TV \nc)Large size Heated Jacuzzi \nd) 5g- Wifi \ne) Spacious Recliner Sofa \nf)Working desk with precious views.\n\n";
+    //cout<<"ORDINARY : [Single & simple room]: \na) Singel bed \nb) TV \nc) A private bathroom and a shower \nd) Working desk.\n\n";
+    //cout<<"LUXUARY : [Spacious room]: \na) King-size bed \nb) Smart TV \nc) Jacuzzi \nd) Wifi \ne) Single Recliner Sofa \nf) Working desk.\n\n";
+    //cout<<"ROYAL(V.I.P) : [Studio Quality room as fully furnished apartment]: \na)Special-size bed \nb)Smart TV \nc)Large size Heated Jacuzzi \nd) 5g- Wifi \ne) Spacious Recliner Sofa \nf)Working desk with precious views.\n\n";
+    
+    cout<<"ORDINARY [Single & simple room] :\n\na) Single bed \nb) Smart TV \nc) A private bathroom and a shower \nd) Working desk.\n\n";
+    cout<<"LUXUARY [Spacious room]:\n\na) King-size bed \nb) Smart TV \nc) Jacuzzi \nd) Wifi \ne) Single Recliner Sofa \nf) Working desk.\n\n";
+    cout<<"ROYAL(V.I.P) [Studio Quality room] :\n\na) Special-size bed \nb) Smart TV \nc) Large size Heated Jacuzzi \nd) 5g- Wifi \ne) Spacious Recliner Sofa \nf) Working desk with precious views.\ng) Fully furnished apartment\n\n";
 
     cout<<"Press (1) for Back : ";cin>>choice;
 
