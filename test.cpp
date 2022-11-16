@@ -1,5 +1,4 @@
 #include <iostream>
-// #include <dos.h>
 #include <conio.h>
 #include <stdio.h>
 #include <fstream>
@@ -33,9 +32,10 @@ class hotel{
 //                          Main menu                              //
 //=================================================================//
 void hotel::main_menu(){
-    system("cls");
+    
     int choice;
     while(choice!=5){
+        system("cls");
         
         //display of mainmenu
         
@@ -87,9 +87,8 @@ void hotel::add(){
 
     system("cls");
     int choice;
-    cout<<"******************\n";
-    cout<<"*     AR HOTEL   *\n";
-    cout<<"******************\n"<<endl<<endl;
+    cout<<"      Booking Section    \n";
+    cout<<"---------------------------\n\n";
     cout<<"1. About\n";
     cout<<"2. Select a room\n";
     cout<<"3. Back\n"<<endl;
@@ -118,7 +117,7 @@ void hotel::display(){
 
     system("cls");
 
-ifstream fin("Record.dat",ios::in);
+ifstream fin("record.txt",ios::in);
 int r,flag;
 
 cout<<"\n Enter room number for a particular customer`s details :- ";cin>>r;
@@ -159,7 +158,7 @@ system("cls");
 void hotel::rooms(){
       system("cls");
 
-ifstream fin("Record.dat",ios::in);
+ifstream fin("record.txt",ios::in);
 cout<<"\n\t\t\t    List Of Rooms Allotted";
 cout<<"\n\t\t\t    ----------------------";
 cout<<"\n\n Room No.\tName\t\tAddress\t\tPhone No.\n";
@@ -168,8 +167,9 @@ while(!fin.eof())
 {
 
 fin.read((char*)this,sizeof(hotel));
-cout<<"\n\n "<<room_no<<"\t\t"<<name;
-cout<<"\t\t"<<address<<"\t\t"<<phone;
+// cout<<"\n\n "<<room_no<<"\t\t"<<name;
+// cout<<"\t\t"<<address<<"\t\t"<<phone;
+cout<<"\n\n "<<room_no<<"\t\t"<<name<<"\t\t"<<address<<"\t\t"<<phone;
 
 }
 
@@ -235,7 +235,7 @@ getch();
 void hotel::add_room(){
         system("cls");
         int r,flag;
-        ofstream fout("Record.dat",ios::app);
+        ofstream fout("record.txt",ios::app);
         
         cout<<"\n Total no. of Rooms - 50\n";
         cout<<"\n ORDINARY Rooms from : [ 01 - 30 ]\n";
@@ -283,9 +283,6 @@ void hotel::about(){
     system("cls");
     cout<<"      Features    \n";
     cout<<"-------------------\n\n";
-    //cout<<"ORDINARY : [Single & simple room]: \na) Singel bed \nb) TV \nc) A private bathroom and a shower \nd) Working desk.\n\n";
-    //cout<<"LUXUARY : [Spacious room]: \na) King-size bed \nb) Smart TV \nc) Jacuzzi \nd) Wifi \ne) Single Recliner Sofa \nf) Working desk.\n\n";
-    //cout<<"ROYAL(V.I.P) : [Studio Quality room as fully furnished apartment]: \na)Special-size bed \nb)Smart TV \nc)Large size Heated Jacuzzi \nd) 5g- Wifi \ne) Spacious Recliner Sofa \nf)Working desk with precious views.\n\n";
     
     cout<<"ORDINARY [Single & simple room] :\n\na) Single bed \nb) Smart TV \nc) A private bathroom and a shower \nd) Working desk.\n\n";
     cout<<"LUXUARY [Spacious room]:\n\na) King-size bed \nb) Smart TV \nc) Jacuzzi \nd) Wifi \ne) Single Recliner Sofa \nf) Working desk.\n\n";
@@ -314,7 +311,7 @@ int hotel::check(int r)
 
 int flag=0;
 
-ifstream fin("Record.dat",ios::in);
+ifstream fin("record.txt",ios::in);
 
 while(!fin.eof())
 {
@@ -343,7 +340,7 @@ void hotel::modify(int r)
 
 long pos,flag=0;
 
-fstream file("Record.dat",ios::in|ios::out|ios::binary);
+fstream file("record.txt",ios::in|ios::out|ios::binary);
 
 while(!file.eof())
 {
@@ -385,7 +382,7 @@ void hotel::delete_rec(int r)
 
 int flag=0;
 char ch;
-ifstream fin("Record.dat",ios::in);
+ifstream fin("record.txt",ios::in);
 ofstream fout("temp.dat",ios::out);
 
 while(!fin.eof())
@@ -422,8 +419,8 @@ cout<<"\n Sorry room no. not found or vacant...!!";
 else
 {
 
-remove("Record.dat");
-rename("temp.dat","Record.dat");
+remove("record.txt");
+rename("temp.dat","record.txt");
 
 }
 
@@ -448,3 +445,5 @@ getch();
 h.main_menu();
 return 0;
 }
+
+//Code End
