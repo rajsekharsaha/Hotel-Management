@@ -1,2 +1,2 @@
 # Hotel-Management
-This a collage project
+This is a collage project
