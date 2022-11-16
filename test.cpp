@@ -1,5 +1,5 @@
 #include <iostream>
-#include <dos.h>
+// #include <dos.h>
 #include <conio.h>
 #include <stdio.h>
 #include <fstream>
@@ -47,7 +47,6 @@ void hotel::main_menu(){
         cout<<"3. Room Alloted\n";
         cout<<"4. Edit Records\n";
         cout<<"5. Exit\n\n";
-        cout<<"+ Ctrl + C to exit +\n"<<endl;
 
         //display of mainmenu
 
@@ -222,9 +221,9 @@ break;
 default: cout<<"\n Wrong Choice.....!!";
 
 }
-// cout<<"\n Press any key to continue....!!!";
+cout<<"\n Press any key to continue....!!!";
 
-// getch();
+getch();
 
 }
     
@@ -277,17 +276,16 @@ void hotel::add_room(){
 //                   1.Book a room >> 1.About                      //
 //=================================================================//
 void hotel::about(){
-    system("cls");
+    
     int choice;
 
     while(choice!=1){
-    cout<<"******************\n";
-    cout<<"*     AR HOTEL   *\n";
-    cout<<"******************\n"<<endl<<endl;
-    cout<<"      Features    \n\n";
-    cout<<"ORDINARY : \n\n";
-    cout<<"LUXUARY : \n\n";
-    cout<<"ROYAL(V.I.P) : \n\n";
+    system("cls");
+    cout<<"      Features    \n";
+    cout<<"-------------------\n\n";
+    cout<<"ORDINARY : [Single & simple room]: \na) Singel bed \nb) TV \nc) A private bathroom and a shower \nd) Working desk.\n\n";
+    cout<<"LUXUARY : [Spacious room]: \na) King-size bed \nb) Smart TV \nc) Jacuzzi \nd) Wifi \ne) Single Recliner Sofa \nf) Working desk.\n\n";
+    cout<<"ROYAL(V.I.P) : [Studio Quality room as fully furnished apartment]: \na)Special-size bed \nb)Smart TV \nc)Large size Heated Jacuzzi \nd) 5g- Wifi \ne) Spacious Recliner Sofa \nf)Working desk with precious views.\n\n";
 
     cout<<"Press (1) for Back : ";cin>>choice;
 
